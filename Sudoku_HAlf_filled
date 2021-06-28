@@ -1,0 +1,23 @@
+#creating half filled 9X9 sudoku
+
+import random
+def sudoku_gen():
+    S_board=[[0 for i in range(9)] for _ in range (9)]
+    a = list (range(17,82))
+    num = [0,1,2,3,4,5,6,7,8]
+    for i in range (random.choice(a)):        #min num of sudoku clues needed
+        row=random.choice(num)
+        colum=random.choice(num)
+        occurence = []
+        while (row,colum) in occurence:
+            row = random.choice(num)
+            colum = random.choice(num)
+        S_board[row][colum] = random.choice([1,2,3,4,5,6,7,8,9])
+        occurence.append((row,colum)) #to avoid repetition
+        
+    i=0
+    for lines in S_board:
+        print(i,lines)
+        i+=1
+print(sudoku_gen())
+
