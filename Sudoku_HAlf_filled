@@ -21,3 +21,8 @@ def sudoku_gen():
         i+=1
 print(sudoku_gen())
 
+def Valid_Sudoku():
+    def check_colum()
+    def check_row()
+    def check_block()
+
