@@ -1,0 +1,87 @@
+#create a 9X9 matrix
+
+def design(r,c): return (3*(r%3)+r//3+c)%9
+
+from random import sample
+def shuffle(s):
+    return sample(s,len(s))
+
+rangeb = range(3)
+
+row = [ g*3 + r for g in shuffle(rangeb) for r in shuffle(rangeb)]
+
+colum = [g*3 +c for g in shuffle(rangeb) for c in shuffle(rangeb)]
+
+numd = shuffle(range(1,9+1))
+
+boar_c = [[numd[design(r,c)] for c in colum] for r in row]
+
+for line in boar_c: print(line)
+
+#checking row for repeated number
+
+def check_row(S_array, row):
+ 
+    # Set to store characters seen so far.
+    Store_num = set()
+ 
+    for i in range(0, 8):
+ 
+        if S_array[row][i] in Store_num:
+            return False
+ 
+     
+    return True
+    
+ #checking cloumns for repeated nmber
+ 
+def check_columns(S_array, colum):
+ 
+    Store_num = set()
+ 
+    for j in range(0, 9):
+
+        if S_array[j][colum] in Store_num:
+            return False
+     
+    return True
+
+#checking the block
+
+def check_block(S_array,sr,sc):
+    
+    Store_num =set()
+    for row in range(0,3):
+        for colum in range(0,3):
+            a = ra=row+sr
+            b = colum+sc
+            block = S_array[a][b]
+            if block in Store_num:      #checking element already in the block
+                return False
+            
+    return True
+
+def Sudoku_V(S_array, row, colum):
+    
+    return (check_row(S_array, row) and check_columns(S_array, colum) and check_block(S_array, row - row % 3, colum - colum % 3))
+
+def Sudoku_C(S_array, matrix):
+    
+    for x in range(0, matrix):
+        for y in range(0, matrix):                                        #checking row column and the blockif it is valid or not
+            if not Sudoku_V(S_array, x, y):
+                return False
+    return True
+
+
+def run_main(S_array, matrix):     #creating a main function
+    
+    if Sudoku_C(S_array, matrix):
+        return True
+    else:
+        return False
+
+print(run_main(boar_c,9))
+
+
+
