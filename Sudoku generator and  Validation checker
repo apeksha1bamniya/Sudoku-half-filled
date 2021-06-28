@@ -22,7 +22,7 @@ for line in boar_c: print(line)
 
 def check_row(S_array, row):
  
-    # Set to store characters seen so far.
+    # Set to store element far amd then check if that exist in the program or not.
     Store_num = set()
  
     for i in range(0, 8):
